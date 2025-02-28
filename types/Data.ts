@@ -7,3 +7,12 @@ export type Data = {
     title: string;
     url: string;
 }
+
+export type ModelProps = {
+    item: {
+        id: string;
+        date: string;
+        title: string;
+        content: string;
+    };
+}

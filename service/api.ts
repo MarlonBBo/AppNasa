@@ -1,16 +1,8 @@
-
-
-const params = new URLSearchParams({
-    api_key:"WBHz6cyqrVeTT1u2ifvSIvYBGOuUJ3EjF9wsYRWU",
-})
+const API_KEY = 'WBHz6cyqrVeTT1u2ifvSIvYBGOuUJ3EjF9wsYRWU';
 
 const api = async (url: string) => {
-   const response = await fetch(`${url}?${params}`)
-   if(!response.ok){
-        throw new Error('falha ao pegar os dados');
-   }
-   return response
-} 
-
+    const response = await fetch(`${url}?api_key=${API_KEY}`);
+    return response;
+};
 
 export default api;

@@ -1,10 +1,11 @@
 import React, { useEffect, useState } from "react";
-import { Text, View, ActivityIndicator } from "react-native";
-import { Image, ImageBackground } from "expo-image"
-import api from "@/service/api";
-import { Data } from "@/types/Data";
+import { Text, View, ActivityIndicator, SafeAreaView } from "react-native";
+import { ImageBackground } from "react-native"
+import api from "../service/api";
+import { Data } from "../types/Data";
 import { StatusBar } from "expo-status-bar";
 import { StyleSheet } from "react-native";
+import { Model } from '@/components/Model';
 
 export default function Home() {
     const [data, setData] = useState<Data | null>(null);
@@ -39,51 +40,39 @@ export default function Home() {
     }
 
     return (
-        <View style={styles.container} >
-            <StatusBar style="dark"/>
+        <View style={styles.container}>
+            <StatusBar style="inverted"/>
             <ImageBackground
-                source={ data?.hdurl }
+                source={{ uri: data?.hdurl }}
                 style={styles.backgroundImage}
             >
-                <View style={styles.info}>
-                    <Text style={styles.title}>{data?.title}</Text>
-                    <Text style={styles.desc}>{data?.explanation}</Text>
-                </View>
+                <SafeAreaView style={styles.info}>
+                    <Model item={{
+                        content: data?.explanation || '',
+                        title: data?.title || '',
+                        date: data?.date || '',
+                        id: "1"
+                    }} />
+                </SafeAreaView>
             </ImageBackground>
         </View>
     );
 }
 
-
 const styles = StyleSheet.create({
     container: {
-      flex: 1,
-      justifyContent: 'center',
-      alignItems: 'center',
-      backgroundColor: '#000',
+        flex: 1,
+        backgroundColor: '#000',
     },
     backgroundImage: {
-      flex: 1,
-      width: '100%',
-      height: '100%',
-      justifyContent: 'center',
+        flex: 1,
+        width: '100%',
+        height: '100%',
     },
     info: {
-        
-      flex: 1,
-      padding: 20,
-    },
-    title: {
-      color: '#fff',
-      fontSize: 25,
-      fontWeight: 'bold',
-      paddingTop: 20,
-    },
-    desc: {
-        marginTop: 20,
-        color: "white",
-        fontStyle: "italic",
-        fontWeight: "regular"
+        marginTop: 35,
+        padding: 20,
+        justifyContent: 'flex-start',
     }
-  });
+});
   
