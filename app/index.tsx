@@ -1,11 +1,12 @@
 import React, { useEffect, useState } from "react";
 import { Text, View, ActivityIndicator, SafeAreaView } from "react-native";
 import { ImageBackground } from "react-native"
-import api from "../service/api";
+import api from "@/service/api";
 import { Data } from "../types/Data";
 import { StatusBar } from "expo-status-bar";
 import { StyleSheet } from "react-native";
 import { Model } from '@/components/Model';
+import { TabNavigation } from "@/components/TabNavigation";
 
 export default function Home() {
     const [data, setData] = useState<Data | null>(null);
@@ -54,6 +55,9 @@ export default function Home() {
                         id: "1"
                     }} />
                 </SafeAreaView>
+
+                <TabNavigation />
+
             </ImageBackground>
         </View>
     );
@@ -68,6 +72,7 @@ const styles = StyleSheet.create({
         flex: 1,
         width: '100%',
         height: '100%',
+        justifyContent: 'space-between',
     },
     info: {
         marginTop: 35,
