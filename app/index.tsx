@@ -1,12 +1,12 @@
 import React, { useEffect, useState } from "react";
 import { Text, View, ActivityIndicator, SafeAreaView } from "react-native";
 import { ImageBackground } from "react-native"
-import api from "@/service/api";
 import { Data } from "../types/Data";
 import { StatusBar } from "expo-status-bar";
 import { StyleSheet } from "react-native";
-import { Model } from '@/components/Model';
+import { ModelView } from '@/components/ModelView';
 import { TabNavigation } from "@/components/TabNavigation";
+import { apiAPOD } from "@/service/api";
 
 export default function Home() {
     const [data, setData] = useState<Data | null>(null);
@@ -16,7 +16,7 @@ export default function Home() {
     useEffect(() => {
         const fetchData = async () => {
             try {
-                const response = await api("https://api.nasa.gov/planetary/apod");
+                const response = await apiAPOD("https://api.nasa.gov/planetary/apod");
                 if (!response.ok) {
                     throw new Error("Falha ao buscar dados");
                 }
@@ -48,7 +48,7 @@ export default function Home() {
                 style={styles.backgroundImage}
             >
                 <SafeAreaView style={styles.info}>
-                    <Model item={{
+                    <ModelView item={{
                         content: data?.explanation || '',
                         title: data?.title || '',
                         date: data?.date || '',

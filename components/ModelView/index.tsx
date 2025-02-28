@@ -36,18 +36,18 @@ const AccordionItem = ({ title, content, date, isExpanded, onPress }: AccordionI
     );
 };
 
-export function Model({ item }: ModelProps) {
+export function ModelView({ item }: ModelProps) {
     const [expandedItem, setExpandedItem] = useState<string | null>(null);
 
     return (
         <View style={styles.container}>
-                    <AccordionItem 
-                        title={item.title}
-                        content={item.content}
-                        date={item.date}
-                        isExpanded={expandedItem === item.id}
-                        onPress={() => setExpandedItem(expandedItem === item.id ? null : item.id)}
-                    />
+            <AccordionItem 
+                title={item.title}
+                content={item.content}
+                date={item.date}
+                isExpanded={expandedItem === item.id}
+                onPress={() => setExpandedItem(expandedItem === item.id ? null : item.id)}
+            />
         </View>
     );
 }
